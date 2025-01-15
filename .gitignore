@@ -1,0 +1,68 @@
+# 依赖目录和包管理器日志
+# npm安装的所有依赖包
+node_modules/
+# npm的调试日志
+npm-debug.log
+# yarn的调试日志
+yarn-debug.log
+# yarn的错误日志
+yarn-error.log
+
+# 环境配置文件
+# 环境变量配置文件
+.env
+# 本地环境变量
+.env.local
+# 所有本地环境配置文件
+.env.*.local
+
+# 编辑器和IDE配置文件
+# WebStorm等JetBrains IDE配置
+.idea/
+# Visual Studio Code配置
+.vscode/
+# vim临时文件
+*.swp
+*.swo
+
+# 操作系统生成的文件
+# Mac系统文件
+.DS_Store
+# Windows缩略图缓存
+Thumbs.db
+
+# 日志文件
+# 日志目录
+logs/
+# 所有日志文件
+*.log
+
+# 构建输出和部署文件
+# 构建输出目录
+dist/
+build/
+# 测试覆盖率报告
+coverage/
+
+# 运行时数据
+# 进程ID文件目录
+pids/
+# 进程ID文件
+*.pid
+# 随机种子文件
+*.seed
+# 进程锁文件
+*.pid.lock
+
+# 调试文件
+# 调试配置文件
+.debug
+
+# 临时文件
+# 临时文件目录
+tmp/
+temp/
+
+# MongoDB相关
+# MongoDB本地数据存储目录
+data/db/

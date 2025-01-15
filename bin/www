@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+
+//======================
+// 模块依赖
+//======================
+const { app } = require('../app');
+var debug = require('debug')('myapp:server');
+var http = require('http');
+const path = require('path');
+
+//======================
+// 环境配置
+//======================
+// 加载.env环境变量
+require('dotenv').config({
+    path: path.resolve(__dirname, '../.env')
+});
+
+//======================
+// 工具函数
+//======================
+/**
+ * 端口号处理函数
+ * @param {string|number} val - 输入的端口值
+ * @returns {number|string|boolean} - 处理后的端口值
+ */
+const normalizePort = (val) => {
+  // 将输入值转换为整数
+  const port = parseInt(val, 10);
+
+  // 如果转换结果不是数字，返回原始值（可能是命名管道）
+  if (isNaN(port)) {
+    return val;
+  }
+
+  // 如果是非负数，则为有效端口号，返回该端口号
+  if (port >= 0) {
+    return port;
+  }
+
+  // 其他情况返回false表示无效端口
+  console.log('当前端口无效，端口为:', port);
+  
+  return false;
+}
+
+//======================
+// 错误处理
+//======================
+/**
+ * 服务器错误处理函数
+ * @param {Error} error - 错误对象
+ */
+const onError = (error) => {
+  // 如果错误不是来自监听操作，直接抛出
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  // 根据端口类型构建错误信息前缀
+  const bind = typeof port === 'string'
+    ? '命名管道: ' + port
+    : '端口号: ' + port;
+
+  // 根据错误代码处理不同类型的错误
+  switch (error.code) {
+    case 'EACCES':
+      // 权限不足错误
+      console.error(bind + ' 需要提升权限');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      // 端口被占用错误
+      console.error(bind + ' 已被占用');
+      process.exit(1);
+      break;
+    default:
+      // 其他错误直接抛出
+      throw error;
+  }
+}
+
+//======================
+// 服务器状态
+//======================
+/**
+ * 服务器监听成功处理函数
+ */
+const onListening = () => {
+  // 获取服务器地址信息
+  const addr = server.address();
+  // 根据地址类型构建日志信息
+  const bind = typeof addr === 'string'
+    ? '命名管道: ' + addr
+    : '端口号: ' + addr.port;
+  // 输出服务器启动信息到调试日志
+  debug('正在监听 ' + bind);
+}
+
+//======================
+// 服务器配置
+//======================
+// 设置端口
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+// 创建HTTP服务器实例
+const server = http.createServer(app);
+
+//======================
+// 启动服务器
+//======================
+server.listen(port);
+// 监听错误事件
+server.on('error', onError);
+// 监听服务器启动事件
+server.on('listening', onListening);
+
+console.log(`服务器已启动，正在监听端口 ${port}`);
