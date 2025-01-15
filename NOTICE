@@ -1,0 +1,16 @@
+NOTICE
+
+This project is licensed under the MIT License. See the LICENSE file in the project root for details.
+
+Copyright (c) 2025 wzh5550123
+
+This project uses third-party libraries listed below, which are subject to their own licenses:
+
+- express (~4.16.1) - MIT License
+- mongoose (^8.9.5) - MIT License
+- dotenv (^16.4.7) - BSD 2-Clause License
+- ejs (~2.6.1) - Apache 2.0 License
+- nodemon (^3.1.9) - MIT License
+- cookie-parser (~1.4.4) - MIT License
+- debug (~2.6.9) - MIT License
+- http-errors (~1.6.3) - MIT License
