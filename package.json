@@ -1,11 +1,14 @@
 {
-  "name": "myapp",
-  "version": "0.0.0",
-  "private": true,
+  "name": "sunflowers-express",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www"
   },
+  "main": "app.js",
+  "license": "MIT",
+  "keywords": ["example", "npm", "package"],
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
